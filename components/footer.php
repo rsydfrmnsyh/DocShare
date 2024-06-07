@@ -1,0 +1,1 @@
+<footer>&copy; Copyright by DocShare 2024</footer>
