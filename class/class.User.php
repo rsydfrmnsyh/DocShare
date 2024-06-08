@@ -2,11 +2,11 @@
 class User extends Connection
 {
     private $user_id = 0;
-    private $username = "";
-    private $user_password = "";
-    private $email = "";
-    private $profile_photo = "";
-    private $role = "";
+    public $username = "a";
+    private $user_password = "a";
+    private $email = "a";
+    private $profile_photo = "a";
+    private $role = "a";
 
     private $result = false;
     private $message = "";
@@ -15,6 +15,8 @@ class User extends Connection
     {
         if (property_exists($this, $attribute)) {
             return $this->$attribute;
+        } else {
+            return  null;
         }
 
     }
@@ -34,20 +36,19 @@ class User extends Connection
 
         if (mysqli_num_rows($resultUser) == 1) {
             $data = mysqli_fetch_assoc($resultUser);
-            $objUser = new User();
-            $objUser->user_id = $data["user_id"];
-            $objUser->username = $data["username"];
-            $objUser->email = $data["email"];
-            $objUser->role = $data["role"];
-            $objUser->profile_photo = $data["profile_photo"];
-            $objUser->result = true;
-            print_r($data);
+            $this->user_id = $data["user_id"];
+            $this->username = $data["username"];
+            $this->email = $data["email"];
+            $this->role = $data["role"];
+            $this->profile_photo = $data["profile_photo"];
+            $this->result = true;
+            // print_r($this);
         }
     }
 
     public function SelectAllUser()
     {
-        $sql = "SELECT user_id, username, email, profile_photo FROM tbl_users ORDER BY username ASC";
+        $sql = "SELECT user_id, username, role, email, profile_photo FROM tbl_users ORDER BY username ASC";
         $resultUser = mysqli_query($this->connection, $sql);
 
         $arrResult = array();
@@ -57,6 +58,7 @@ class User extends Connection
                 $arrResult[$i] = array(
                     "user_id" => $data["user_id"],
                     "username" => $data["username"],
+                    "role" => $data["role"],
                     "email" => $data["email"],
                     "profile_photo" => $data["profile_photo"]
                 );
@@ -75,12 +77,11 @@ class User extends Connection
         $i = 0;
         if (mysqli_num_rows($resultUser) > 0) {
             while ($data = mysqli_fetch_array($resultUser)) {
-                $objUser = new User();
-                $objUser->user_id = $data["user_id"];
-                $objUser->username = $data["username"];
-                $objUser->email = $data["email"];
-                $objUser->profile_photo = $data["profile_photo"];
-                $arrResult[$i] = $objUser;
+                $this->user_id = $data["user_id"];
+                $this->username = $data["username"];
+                $this->email = $data["email"];
+                $this->profile_photo = $data["profile_photo"];
+                $arrResult[$i] = $this;
                 $i++;
             }
         }
@@ -96,12 +97,11 @@ class User extends Connection
         $i = 0;
         if (mysqli_num_rows($resultUser) > 0) {
             while ($data = mysqli_fetch_array($resultUser)) {
-                $objUser = new User();
-                $objUser->user_id = $data["user_id"];
-                $objUser->username = $data["username"];
-                $objUser->email = $data["email"];
-                $objUser->profile_photo = $data["profile_photo"];
-                $arrResult[$i] = $objUser;
+                $this->user_id = $data["user_id"];
+                $this->username = $data["username"];
+                $this->email = $data["email"];
+                $this->profile_photo = $data["profile_photo"];
+                $arrResult[$i] = $this;
                 $i++;
             }
         }
@@ -110,7 +110,7 @@ class User extends Connection
 
     public function AddUser()
     {
-        $sql = "INSERT INTO tbl_users(username, email, password " . (($this->role !== "") ? ", role" : "") . ") VALUES  ('$this->username', '$this->email', '$this->user_password'" . (($this->role !== "") && ($this->role === "admin") ? ", 'admin'" : "") . ");";
+        $sql = "INSERT INTO tbl_users(username, email, password " . (($this->role !== "") ? ", role" : "") . ") VALUE  ('$this->username', '$this->email', '$this->user_password'" . (($this->role !== "") && ($this->role === "admin") ? ", 'admin'" : "") . ");";
         $this->result = mysqli_query($this->connection, $sql);
 
         if ($this->result) {
@@ -124,7 +124,7 @@ class User extends Connection
     {
         $this->connect();
 
-        $sql = "UPDATE FROM tbl_users SET username='$this->username', email='$this->email', profile_photo='$this->profile_photo', role='$this->role', password='$this->user_password' WHERE user_id='$this->user_id'";
+        $sql = "UPDATE tbl_users SET username='$this->username', email='$this->email', profile_photo='$this->profile_photo', role='$this->role', password='$this->user_password' WHERE user_id='$this->user_id'";
         $this->result = mysqli_query($this->connection, $sql);
 
         if ($this->result) {
@@ -142,9 +142,9 @@ class User extends Connection
         $this->result = mysqli_query($this->connection, $sql);
 
         if ($this->result) {
-            $this->message = "Data berhasil di tambahkan";
+            $this->message = "Data berhasil di hapus";
         } else {
-            $this->message = "Data gagal di masukkan";
+            $this->message = "Data gagal di hapus";
         }
     }
 

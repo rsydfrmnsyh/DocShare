@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2024 at 01:04 PM
+-- Generation Time: Jun 08, 2024 at 03:08 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -99,8 +99,7 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`user_id`, `username`, `email`, `profile_photo`, `role`, `password`) VALUES
-(1, 'admin', 'muhammadidris@students.esqbs.ac.id', NULL, 'admin', '$2y$10$Bkj9cP4mF5McoFlK6w.qauSloAVCrJKI3RpmhSkVrXbk4YaIs1E5.'),
-(2, 'admin', 'sdsds', NULL, 'admin', '$2y$10$zcpzx9W9JYt.m316Xh6MI.uvGjRUti4Qh36wbyCBd0vJGUKR0UCA.');
+(1, 'admin', 'muhammadidris@students.esqbs.ac.id', './uploads/profile_photo/1.jpeg', 'admin', '12345');
 
 --
 -- Indexes for dumped tables
@@ -168,7 +167,7 @@ ALTER TABLE `tbl_subscriptions`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

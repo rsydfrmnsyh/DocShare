@@ -8,39 +8,26 @@ if (isset($_POST["submit"])) {
     $objUser->username = $_POST["username"];
     $objUser->email = $_POST["email"];
 
-    $filteredUser = array();
+    $filteredUser = 0;
     for ($i = 0; $i < count($arrUser); $i++) {
         if ($arrUser[$i]["username"] === $objUser->username) {
-            array_push(
-                $filteredUser,
-                array(
-                    "username" => $arrUser[$i]["username"],
-                    "email" => $arrUser[$i]["email"]
-                )
-            );
+            ++$filteredUser;
             $objUser->result = false;
             $objUser->message = "Username sudah digunakan";
-            print_r($filteredUser);
-            echo "username sudah digunakan";
+            break;
         } else if ($arrUser[$i]["email"] === $objUser->email) {
-            array_push(
-                $filteredUser,
-                array(
-                    "username" => $arrUser[$i]["username"],
-                    "email" => $arrUser[$i]["email"]
-                )
-            );
+            ++$filteredUser;
             $objUser->result = false;
             $objUser->message = "Email sudah digunakan";
-            print_r($filteredUser);
-            echo "email sudah digunakan";
+            break;
         } else {
             $objUser->result = true;
             $objUser->message = "Berhasil menambahkan data user";
+            continue;
         }
     }
 
-    if ($objUser->result && count($filteredUser) > 0) {
+    if ($objUser->result && $filteredUser === 0) {
         // tambah user jika username dan email tidak pernah di pakai
 
         $objUser->role = $_POST["role"];
@@ -79,7 +66,7 @@ if (isset($_POST["submit"])) {
         </div>
         <div class="flex flex-row justify-center items-center">
             <input type="submit" value="Add" name="submit">
-            <a href="./index.php?signin.php">Cancel</a>
+            <a href="./index.php?dashboardAdmin.php">Cancel</a>
         </div>
     </form>
 </main>
