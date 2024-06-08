@@ -114,9 +114,9 @@ class User extends Connection
         $this->result = mysqli_query($this->connection, $sql);
 
         if ($this->result) {
-            $this->message = "Data berhasil di tambahkan";
+            $this->message = "User added successfully";
         } else {
-            $this->message = "Data gagal di masukkan";
+            $this->message = "Failed to add user";
         }
     }
 
@@ -128,9 +128,9 @@ class User extends Connection
         $this->result = mysqli_query($this->connection, $sql);
 
         if ($this->result) {
-            $this->message = "Data Berhasil ditambahkan";
+            $this->message = "User updated successfully";
         } else {
-            $this->message = "Data gagal di tmabhakna";
+            $this->message = "Failed to update user";
         }
     }
 
@@ -142,9 +142,9 @@ class User extends Connection
         $this->result = mysqli_query($this->connection, $sql);
 
         if ($this->result) {
-            $this->message = "Data berhasil di hapus";
+            $this->message = "User deleted successfully";
         } else {
-            $this->message = "Data gagal di hapus";
+            $this->message = "Failed to delete user";
         }
     }
 
