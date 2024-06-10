@@ -1,10 +1,20 @@
 <?php
-require_once ("./class/class.User.php");
 
-$objUsers = new User();
-$arrUsers = $objUsers->SelectAllUser();
+if (!isset($_SESSION["user_id"])) {
+    header("location: index.php?p=signin");
+    exit();
+} else {
+    $user_id = $_SESSION["user_id"];
+
+    require_once ("./class/class.User.php");
+
+    $objUsers = new User();
+    $arrUsers = $objUsers->SelectAllUser();
+}
 ?>
 <main>
+    <h1>List All User</h1>
+    <a href="index.php?p=addUser">Add User</a>
     <table border="">
         <thead>
             <tr>
@@ -28,8 +38,11 @@ $arrUsers = $objUsers->SelectAllUser();
                         <td class="border border-black"><?= $value["username"] ?></td>
                         <td class="border border-black"><?= $value["email"] ?></td>
                         <td class="border border-black"><?= $value["role"] ?></td>
-                        <td class="border border-black"><img src="<?= $value["profile_photo"] ?>" alt="" title="<?= $value["username"] ?>" width="50"></td>
-                        <td class="border border-black"><a href="index.php?p=deleteUser&user_id=<?= $value["user_id"] ?>">Delete</a></td>
+                        <td class="border border-black"><img src="<?= $value["profile_photo"] ?>" alt=""
+                                title="<?= $value["username"] ?>" width="50"></td>
+                        <td class="border border-black"><a
+                                href="index.php?p=updateUser&user_id=<?= $value["user_id"] ?>">Update</a><a
+                                href="index.php?p=deleteUser&user_id=<?= $value["user_id"] ?>">Delete</a></td>
                     </tr>
                 <?php }
             } else { ?>

@@ -16,7 +16,7 @@ class User extends Connection
         if (property_exists($this, $attribute)) {
             return $this->$attribute;
         } else {
-            return  null;
+            return null;
         }
 
     }
@@ -27,23 +27,6 @@ class User extends Connection
             $this->$attribute = $value;
         }
 
-    }
-
-    public function SelectUserById()
-    {
-        $sql = "SELECT user_id, username, email, role, profile_photo FROM tbl_users WHERE user_id='$this->user_id'";
-        $resultUser = mysqli_query($this->connection, $sql);
-
-        if (mysqli_num_rows($resultUser) == 1) {
-            $data = mysqli_fetch_assoc($resultUser);
-            $this->user_id = $data["user_id"];
-            $this->username = $data["username"];
-            $this->email = $data["email"];
-            $this->role = $data["role"];
-            $this->profile_photo = $data["profile_photo"];
-            $this->result = true;
-            // print_r($this);
-        }
     }
 
     public function SelectAllUser()
@@ -66,6 +49,35 @@ class User extends Connection
             }
         }
         return $arrResult;
+    }
+    public function SelectUserById()
+    {
+        $sql = "SELECT user_id, username, password, email, role FROM tbl_users WHERE user_id='$this->user_id'";
+        $resultUser = mysqli_query($this->connection, $sql);
+
+        if (mysqli_num_rows($resultUser) == 1) {
+            $data = mysqli_fetch_assoc($resultUser);
+            $this->user_id = $data["user_id"];
+            $this->username = $data["username"];
+            $this->user_password = $data["password"];
+            $this->email = $data["email"];
+            $this->role = $data["role"];
+
+            $this->result = true;
+        }
+    }
+    public function SelectUserByUsername()
+    {
+        $sql = "SELECT user_id FROM tbl_users WHERE username='$this->username'";
+        $resultUser = mysqli_query($this->connection, $sql);
+
+        if (mysqli_num_rows($resultUser) == 1) {
+            $data = mysqli_fetch_assoc($resultUser);
+            $this->user_id = $data["user_id"];
+            // $this->user_password = $data["password"];
+            // $this->username = $data["username"];
+            $this->result = true;
+        }
     }
 
     public function SelectAllUserByMember()
