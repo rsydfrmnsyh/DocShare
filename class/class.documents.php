@@ -10,6 +10,7 @@ class Documents extends Connection
     private $description = '';
     private $img = '';
     private $pages = '';
+    private $url = '';
     private $created_at = '';
     private $updated_at = '';
     private $user;
@@ -68,12 +69,12 @@ class Documents extends Connection
         return $arrResult;
     }
 
-    public function AddDocuments()
+    public function AddDocument()
     {
-        $sql = "INSERT INTO tbl_documents (title, author, description, img, page)
-                    VALUES ($this->d_title, $this->d_author, $this->d_desc, $this->d_img, $this->d_pages)";
-        $this->result = mysqli_query($this->connection, $sql);
+        $sql = "INSERT INTO tbl_documents (title, author, description, category_id, user_upload_id, url)
+                    VALUES ('$this->title', '$this->author', '$this->description', '" . $this->category->category_id . "', '" . $this->user->user_id . "' , '$this->url')";
 
+        $this->result = mysqli_query($this->connection, $sql);
         if ($this->result)
             $this->message = 'document successfully added';
         else

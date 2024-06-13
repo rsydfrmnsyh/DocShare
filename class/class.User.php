@@ -122,7 +122,7 @@ class User extends Connection
 
     public function AddUser()
     {
-        $sql = "INSERT INTO tbl_users(username, email, password " . (($this->role !== "") ? ", role" : "") . ") VALUE  ('$this->username', '$this->email', '$this->user_password'" . (($this->role !== "") && ($this->role === "admin") ? ", 'admin'" : "") . ");";
+        $sql = "INSERT INTO tbl_users(username, email, password , role) VALUE  ('$this->username', '$this->email', '$this->user_password', '$this->role');";
         $this->result = mysqli_query($this->connection, $sql);
 
         if ($this->result) {

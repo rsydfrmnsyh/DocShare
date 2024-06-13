@@ -34,7 +34,7 @@ if (isset($_POST["submit"])) {
         $objUser->user_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
         $objUser->AddUser();
         $_SESSION["user_id"] = $objUser->user_id;
-        $_SESSION["username"] = $objUser->user_username;
+        $_SESSION["username"] = $objUser->username;
         $_SESSION["role"] = $objUser->role;
         echo "<script>alert('$objUser->message');</script>";
         echo "<script>window.location.href='./index.php?p=dashboardMember';</script>";

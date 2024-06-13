@@ -4,6 +4,7 @@
             <ul>
                 <li><a href="index.php?p=dashboardAdmin">Dashboard</a></li>
                 <li><a href="index.php?p=listUser">List All User</a></li>
+                <li><a href="index.php?p=listDocuments">List All Documents</a></li>
                 <li><a href="index.php?p=signin">Sign IN</a></li>
                 <li><a href="index.php?p=signup">Sign Up</a></li>
                 <li><a href="index.php?p=signout">Sign Out</a></li>
