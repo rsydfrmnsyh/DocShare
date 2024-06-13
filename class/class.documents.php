@@ -42,7 +42,7 @@ class Documents extends Connection
 
     public function SelectAllDocuments()
     {
-        $sql = 'SELECT d.*, u.user_id, u.username, u.profile_photo, c.category_name FROM tbl_documents d INNER JOIN tbl_users  u ON d.user_upload_id = u.user_id INNER JOIN categories ON d.category_id = c.category_id';
+        $sql = 'SELECT d.*, u.user_id, u.username, u.profile_photo, c.category_name FROM tbl_documents d INNER JOIN tbl_users  u ON d.user_upload_id = u.user_id INNER JOIN tbl_categories c ON d.category_id = c.category_id';
         $result = mysqli_query($this->connection, $sql);
         $arrResult = array();
         $count = 0;

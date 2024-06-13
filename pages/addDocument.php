@@ -3,8 +3,10 @@
 if (!isset($_SESSION["user_id"]) && $_SESSION["role"] != "admin") {
     header("location: index.php?p=signin");
     exit();
-} else {
+    } else {
     require_once "./class/class.Documents.php";
+    $objCat = new Category();
+    $CatList = $objCat->SelectAllCategory();
     if (isset($_POST["submit"])) {
         $title = $_POST["title"];
         $author = $_POST["author"];
@@ -67,6 +69,12 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["role"] != "admin") {
             <label for="category">Category</label>
             <select name="category" id="category" required>
                 <option value="" selected disabled>-- Select Category --</option>
+                <?php
+                    foreach ($CatList as $cat)
+                    {
+                        echo '<option value='.$cat->category_id,'>'.$cat->category_name.'</option';
+                    }
+                ?>
             </select>
         </div>
         <div class="flex flex-row justify-center items-center">
