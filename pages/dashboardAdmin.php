@@ -1,9 +1,8 @@
 <?php
 
-if (!isset($_SESSION["user_id"])) {
+if (!isset($_SESSION["user_id"]) && $_SESSION["role"] != "admin") {
     header("location: index.php?p=signin");
-    exit();
-
+    exit;
 }
 ?>
 <main>

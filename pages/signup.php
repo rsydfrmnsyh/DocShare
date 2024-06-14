@@ -47,23 +47,28 @@ if (isset($_POST["submit"])) {
     exit;
 }
 ?>
-<main>
-    <h1>Form Sign Up</h1>
-    <form action="" method="post">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username">
+<main class="flex justify-center items-center h-full w-full">
+    <form action="" method="post"
+        class="border rounded-lg bg-white p-10 gap-6 shadow w-1/3 flex flex-column flex-wrap justify-center items-center">
+        <div class="flex flex-row items-center gap-4 text-2xl w-full justify-center mb-4">
+            <img src="./assets/logo.svg" alt="" title="DocShare" width="60">
+            <h3 class="font-bold">DocShare</h3>
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="username" class="font-semibold w-1/3">Username</label>
+            <input type="text" name="username" id="username" class="px-4 py-2 text-lg outline-none border-4 rounded-lg border-black focus:border-blue">
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email">
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="password" class="font-semibold w-1/3">Password</label>
+            <input type="password" name="password" id="password" class="px-4 py-2 text-lg outline-none border-4 rounded-lg border-black focus:border-blue">
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <input type="submit" value="Sign Up" name="submit">
-            <a href="./index.php?signin.php">Already have'nt an Account?</a>
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="email" class="font-semibold w-1/3">Email</label>
+            <input type="text" name="email" id="email" class="px-4 py-2 text-lg outline-none border-4 rounded-lg border-black focus:border-blue">
+        </div>
+        <div class="flex flex-row flex-wrap items-center justify-center w-full gap-2">
+            <input type="submit" value="Sign Up" name="submit" class="w-full px-4 py-2 font-bold bg-blue text-white rounded-lg cursor-pointer">
+            <p>Already have an account? <a href="index.php?p=signin" class="text-blue">Sign In</a></p>
         </div>
     </form>
 </main>

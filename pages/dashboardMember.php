@@ -2,9 +2,11 @@
 
 if (!isset($_SESSION["user_id"])) {
     header("location: index.php?p=signin");
-    exit();
-} 
+    exit;
+}
 
-?><main>
-    <h1>dashboardMember </h1>
+
+?>
+<main class="">
+    <div class="p-10"><h1>Hello, </h1></div>
 </main>

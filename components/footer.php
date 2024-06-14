@@ -1,1 +1,1 @@
-<footer>&copy; Copyright by DocShare 2024</footer>
+<footer class="w-full p-4">&copy; Copyright by DocShare 2024</footer>
