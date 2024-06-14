@@ -15,7 +15,7 @@ if (isset($_POST["submit"])) {
         $resultPassword = password_verify($password, $objUser->user_password);
         if ($resultPassword) {
             $_SESSION["user_id"] = $objUser->user_id;
-            $_SESSION["username"] = $objUser->user_username;
+            $_SESSION["username"] = $objUser->username;
             $_SESSION["role"] = $objUser->role;
             if ($_SESSION["role"] == "admin") {
                 echo "<script>alert('Berhasil Login');</script>";

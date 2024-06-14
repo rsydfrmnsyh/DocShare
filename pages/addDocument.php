@@ -64,44 +64,57 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "admin") {
     }
 }
 ?>
-<main>
-    <h1>Add Document</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        <div class="flex flex-row justify-center items-center">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" required>
+<main class="w-4/5 h-full flex flex-column flex-wrap justify-center items-center gap-4">
+    <div class="w-full h-1/3 p-10 rounded-lg bg-blue shadow flex flex-column justify-center items-center">
+        <h1 class="font-semibold text-center text-5xl text-white">Add Document</h1>
+    </div>
+    <form action="" method="post" enctype="multipart/form-data"
+        class="w-full h-2/3 overflow-y-scroll p-10 gap-4 rounded-lg bg-white shadow flex flex-column flex-wrap justify-center items-center">
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="title" class="font-semibold text-xl w-1/5">Title</label>
+            <input type="text" name="title" id="title"
+                class="px-4 py-2 w-4/5 text-lg outline-none border-4 rounded-lg border-black focus:border-blue"
+                required>
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <label for="author">Author</label>
-            <input type="text" name="author" id="author" required>
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="author" class="font-semibold text-xl w-1/5">Author</label>
+            <input type="text" name="author" id="author"
+                class="px-4 py-2 w-4/5 text-lg outline-none border-4 rounded-lg border-black focus:border-blue"
+                required>
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <label for="description">Description</label>
-            <textarea name="description" id="description" required></textarea>
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="description" class="font-semibold text-xl w-1/5">Description</label>
+            <textarea name="description" id="description"
+                class="px-4 py-2 w-4/5 text-lg outline-none border-4 rounded-lg border-black focus:border-blue"
+                required></textarea>
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <label for="pages">Pages</label>
-            <input type="number" name="pages" id="pages" required>
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="pages" class="font-semibold text-xl w-1/5">Pages</label>
+            <input type="number" name="pages" id="pages"
+                class="px-4 py-2 w-4/5 text-lg outline-none border-4 rounded-lg border-black focus:border-blue"
+                required>
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <label for="category">Category</label>
-            <select name="category" id="category" required>
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="category" class="font-semibold text-xl w-1/5">Category</label>
+            <select name="category" id="category" required
+                class="px-4 py-2 w-4/5 text-lg outline-none border-4 rounded-lg border-black focus:border-blue cursor-pointer">
                 <option value="" selected disabled>-- Select Category --</option>
                 <?php foreach ($arrCategories as $value) { ?>
                     <option value="<?= $value->category_id ?>"><?= $value->category_name ?></option>
                 <?php } ?>
             </select>
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <label for="upload">Upload Document</label>
-            <input type="file" name="uploadDocument" id="upload" required>
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="upload" class="font-semibold text-xl w-1/5">Upload Document</label>
+            <input type="file" name="uploadDocument" id="upload"
+                class="px-4 py-2 w-4/5 text-lg outline-none border-4 rounded-lg border-black focus:border-blue"
+                required>
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <input type="submit" value="Upload" name="submit">
-            <a href="index.php?p=listDocuments">Cancel</a>
-        </div>
-        <div class="flex flex-row justify-center items-center">
-            <p>Sistem akan otomatis menjadikan halaman pertama sebagai cover</p>
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <input type="submit" value="Upload" name="submit"
+                class="w-1/2 px-4 py-2 text-center font-semibold text-white rounded-lg bg-blue hover:bg-black cursor-pointer">
+            <a href="index.php?p=listDocuments"
+                class="w-1/2 px-4 py-2 text-center font-semibold text-white rounded-lg bg-red-600 hover:bg-black cursor-pointer">Cancel</a>
         </div>
     </form>
 </main>

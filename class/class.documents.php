@@ -42,7 +42,7 @@ class Documents extends Connection
 
     public function SelectDocumentById()
     {
-        $sql = "SELECT d.*, u.user_id, u.username, u.profile_photo, c.category_id, c.category_name FROM tbl_documents d INNER JOIN tbl_users  u ON d.user_upload_id = u.user_id INNER JOIN tbl_categories c ON d.category_id = c.category_id WHERE document_id='$this->document_id'";
+        $sql = "SELECT d.*, u.user_id, u.username, u.profile_photo, c.category_id, c.category_name FROM tbl_documents d INNER JOIN tbl_users  u ON d.user_upload_id = u.user_id INNER JOIN tbl_categories c ON d.category_id = c.category_id WHERE document_id='$this->document_id' ORDER BY d.document_id DESC";
         $result = mysqli_query($this->connection, $sql);
 
         if (mysqli_num_rows($result) == 1) {
@@ -64,6 +64,35 @@ class Documents extends Connection
     public function SelectAllDocuments()
     {
         $sql = 'SELECT d.*, u.user_id, u.username, u.profile_photo, c.category_name FROM tbl_documents d INNER JOIN tbl_users  u ON d.user_upload_id = u.user_id INNER JOIN tbl_categories c ON d.category_id = c.category_id';
+        $result = mysqli_query($this->connection, $sql);
+        $arrResult = array();
+        $count = 0;
+        if (mysqli_num_rows($result) > 0) {
+            while ($data = mysqli_fetch_array($result)) {
+                $objDocuments = new Documents();
+                $objDocuments->document_id = $data['document_id'];
+                $objDocuments->title = $data['title'];
+                $objDocuments->author = $data['author'];
+                $objDocuments->description = $data['description'];
+                $objDocuments->img = $data['img'];
+                $objDocuments->url = $data['url'];
+                $objDocuments->user->user_id = $data["user_id"];
+                $objDocuments->user->username = $data["username"];
+                $objDocuments->user->profile_photo = $data["profile_photo"];
+                $objDocuments->category->category_id = $data['category_id'];
+                $objDocuments->category->category_name = $data['category_name'];
+                $objDocuments->pages = $data['page'];
+                $objDocuments->created_at = $data['created_at'];
+                $objDocuments->updated_at = $data['updated_at'];
+                $arrResult[$count] = $objDocuments;
+                $count++;
+            }
+        }
+        return $arrResult;
+    }
+    public function SelectAllDocumentsByUserId($id)
+    {
+        $sql = 'SELECT d.*, u.user_id, u.username, u.profile_photo, c.category_name FROM tbl_documents d INNER JOIN tbl_users  u ON d.user_upload_id = u.user_id INNER JOIN tbl_categories c ON d.category_id = c.category_id WHERE d.user_upload_id="' . $id . '" ORDER BY d.document_id DESC';
         $result = mysqli_query($this->connection, $sql);
         $arrResult = array();
         $count = 0;

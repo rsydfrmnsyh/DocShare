@@ -4,7 +4,7 @@ if (!isset($_SESSION["user_id"])) {
     header("location: index.php?p=signin");
     exit();
 } else {
-    if (($_GET["user_id"] && $_SESSION["role"] == "admin") || ($_GET["user_id"] == $_SESSION["user_id"])) {
+    if ((isset($_GET["user_id"]) && $_SESSION["role"] == "admin") || ($_GET["user_id"] == $_SESSION["user_id"])) {
         require_once ('./class/class.User.php');
 
         $objUser = new User();
@@ -45,6 +45,8 @@ if (!isset($_SESSION["user_id"])) {
 
             $objUser->UpdateUser();
             echo "<script>alert('$objUser->message');</script>";
+            header("location: ./index.php?p=listUser");
+            exit;
         }
     } else if ((!$_GET["user_id"] && $_SESSION["role"] == "admin")) {
         header("location: ./index.php?p=listUser");
@@ -55,33 +57,48 @@ if (!isset($_SESSION["user_id"])) {
     }
 }
 ?>
-<main>
-    <h1>Form Update User</h1>
-    <h2><?php echo $objUser->username; ?></h2>
-    <form action="" method="post" enctype="multipart/form-data">
-        <div class="flex flex-row justify-center items-center">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" value="<?= $objUser->username ?>">
+<main class="w-4/5 h-full flex flex-column flex-wrap justify-center items-center gap-4">
+    <div class="w-full h-1/3 p-10 rounded-lg bg-blue shadow flex flex-column flex-wrap justify-center items-center">
+        <h1 class="font-semibold text-center text-5xl text-white w-full">Form Update User</h1>
+        <p class="text-white text-center text-xl"><?php echo $objUser->username; ?></p>
+    </div>
+    <form action="" method="post" enctype="multipart/form-data"
+        class="w-full h-2/3 p-10 rounded-lg bg-white shadow flex flex-column flex-wrap justify-center items-center">
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="username" class="font-semibold text-xl w-1/5">Username</label>
+            <input type="text" name="username" id="username" value="<?= $objUser->username ?>"
+                class="px-4 py-2 w-4/5 text-lg outline-none border-4 rounded-lg border-black focus:border-blue">
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="password" class="font-semibold text-xl w-1/5">Password</label>
+            <input type="password" name="password" id="password"
+                class="px-4 py-2 w-4/5 text-lg outline-none border-4 rounded-lg border-black focus:border-blue">
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" value="<?= $objUser->email ?>">
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="email" class="font-semibold text-xl w-1/5">Email</label>
+            <input type="text" name="email" id="email" value="<?= $objUser->email ?>"
+                class="px-4 py-2 w-4/5 text-lg outline-none border-4 rounded-lg border-black focus:border-blue">
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <label for="role">Role</label>
-            <input type="text" name="role" id="role" value="<?= $objUser->role ?>" disabled>
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="role" class="font-semibold text-xl w-1/5">Role</label>
+            <input type="text" name="role" id="role" value="<?= $objUser->role ?>"
+                class="px-4 py-2 w-4/5 text-lg outline-none border-4 rounded-lg border-black" disabled>
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <label for="profile_photo">Profile Photo</label>
-            <input type="file" name="profile_photo" id="profile_photo">
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <label for="profile_photo" class="font-semibold text-xl w-1/5">Profile Photo</label>
+            <input type="file" name="profile_photo" id="profile_photo"
+                class="px-4 py-2 w-4/5 text-lg outline-none border-4 rounded-lg border-black">
         </div>
-        <div class="flex flex-row justify-center items-center">
-            <input type="submit" value="Update" name="submit">
-            <a href="./index.php?p=listUser.php">Cancel</a>
+        <div class="flex flex-column items-center justify-start gap-4 w-full">
+            <input type="submit" value="Update" name="submit"
+                class="w-1/2 px-4 py-2 text-center font-semibold text-white rounded-lg bg-blue hover:bg-black cursor-pointer">
+            <?php if ($_SESSION["role"] == "admin") { ?>
+                <a href="./index.php?p=listUser"
+                    class="w-1/2 px-4 py-2 text-center font-semibold text-white rounded-lg bg-red-600 hover:bg-black cursor-pointer">Cancel</a>
+            <?php } else { ?>
+                <a href="./index.php?p=dashboardMember"
+                    class="w-1/2 px-4 py-2 text-center font-semibold text-white rounded-lg bg-red-600 hover:bg-black cursor-pointer">Cancel</a>
+            <?php } ?>
         </div>
     </form>
 </main>

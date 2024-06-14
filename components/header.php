@@ -27,10 +27,8 @@
                     class="px-4 py-2 rounded-lg hover:bg-gray-300 w-full font-semibold">Dashboard</a>
                 <a href="index.php?p=updateUser&user_id=<?= $_SESSION['user_id'] ?>"
                     class="px-4 py-2 rounded-lg hover:bg-gray-300 w-full font-semibold">Update User</a>
-                <a href="index.php?p=signin" class="px-4 py-2 rounded-lg hover:bg-gray-300 w-full font-semibold">Sign IN</a>
-                <a href="index.php?p=signup" class="px-4 py-2 rounded-lg hover:bg-gray-300 w-full font-semibold">Sign Up</a>
                 <a href="index.php?p=signout"
-                    class="px-4 py-2 rounded-lg  bg-red-600 hover:bg-red-800 text-white  w-full font-semibold self-end">Sign
+                    class="px-4 py-2 rounded-lg  bg-red-600 hover:bg-red-800 text-white  w-full font-semibold text-center">Sign
                     Out</a>
             </nav>
         </header>

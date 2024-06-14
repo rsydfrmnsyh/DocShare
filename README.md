@@ -1,25 +1,9 @@
 #DocShare
 
-list yang harus di kerjakan
-- crud document
-- add document
-- update document
-- read document
-- delete document
+Import database 'docshare'
 
-- crud plans
-- add plans
-- update plans
-- read plans
-- delete plans
+username = "admin"
+passwrod = 12345
 
-- front end user
-- user hanya bisa me read document
-- user save document
-- user mengupdate data
-- user subcriptions
-
-- landing page
-- list document page
-- search document
-- about page
+username = "member"
+password = 12345

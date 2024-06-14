@@ -38,7 +38,7 @@ session_start();
         }
     </script>
 </head>
-<body class="bg-gray-300 h-svh w-svw p-4 overflow-hidden">
+<body class="bg-gray-300 h-svh w-svw p-4 overflow-hidden flex flex-row justify-center items-center gap-4">
     <?php include "./components/header.php" ?>
     <?php
     $pages_dir = 'pages';
@@ -53,10 +53,9 @@ session_start();
             echo 'Halaman tidak ditemukan! :(';
         }
     } else {
-        include ($pages_dir . '/signin.php');
+        include ($pages_dir . '/homepage.php');
     }
     ?>
-    <!-- <?php include "./components/footer.php" ?> -->
 </body>
 
 </html>
