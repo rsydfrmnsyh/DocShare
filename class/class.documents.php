@@ -106,18 +106,20 @@ class Documents extends Connection
     public function UpdateDocuments()
     {
         $sql = "UPDATE tbl_documents
-                    SET title = '$this->document_id',
+                    SET title = '$this->title',
                     author = '$this->author',
                     description = '$this->description',
-                    category = '" . $this->category->category_id . "',
+                    category_id = '" . $this->category->category_id . "',
                     page = '$this->pages'
                     WHERE document_id = $this->document_id";
         $this->result = mysqli_query($this->connection, $sql);
 
-        if ($this->result)
+        if ($this->result) {
             $this->message = 'document successfully updated';
-        else
+        } else {
             $this->message = 'failed to update document';
+
+        }
     }
 
     public function DeleteDocument()

@@ -14,8 +14,6 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "admin") {
     $arrDocuments = $objDocuments->SelectAllDocuments();
     $indexNewDocument = count($arrDocuments) + 1;
 
-    print_r($arrCategories[0]->category_id);
-
     if (isset($_POST["submit"])) {
         $title = $_POST["title"];
         $author = $_POST["author"];
@@ -42,7 +40,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "admin") {
             echo "<script>alert('Size File tidak boleh lebih dari 100MB!');</script>";
             echo "<script>window.location='index.php?p=addDocument'</script>";
         } else {
-            $isSuccessUpload = move_uploaded_file($documentLocation, $folder . $title . ".pdf");
+            $isSuccessUpload = move_uploaded_file($documentLocation, $folder . $indexNewDocument . ".pdf");
             if ($isSuccessUpload) {
                 $objDocument = new Documents();
                 $objDocument->title = $title;
@@ -51,7 +49,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "admin") {
                 $objDocument->pages = $pages;
                 $objDocument->category->category_id = $category;
                 $objDocument->user->user_id = $_SESSION["user_id"];
-                $objDocument->url = $folder . $title . ".pdf";
+                $objDocument->url = $folder . $indexNewDocument . ".pdf";
                 $objDocument->AddDocument();
 
                 if ($objDocument->result) {

@@ -1,7 +1,7 @@
 <?php
 if (!isset($_SESSION["user_id"]) && $_SESSION["role"] != "admin") {
     header("location: index.php?p=signin");
-    exit();
+    exit;
 } else {
     require_once ("./class/class.Documents.php");
 

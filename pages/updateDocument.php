@@ -16,8 +16,15 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["role"] != "admin" && !isset($_GET
             $objDocuments->title = $_POST["title"];
             $objDocuments->author = $_POST["author"];
             $objDocuments->description = $_POST["description"];
-            $objDocuments->category = $_POST["category"];
+            $objDocuments->category->category_id = $_POST["category"];
             $objDocuments->UpdateDocuments();
+            if ($objDocuments->result) {
+                echo "<script>alert('$objDocuments->message');</script>";
+                echo "<script>window.location.href='./index.php?p=listDocuments';</script>";
+            } else {
+                echo "<script>alert('$objDocuments->message');</script>";
+                echo "<script>window.location.href='./index.php?p=updateDocument&document_id=$objDocuments->document_id';</script>";
+            }
         }
     }
 }
