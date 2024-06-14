@@ -3,7 +3,6 @@
 if (!isset($_SESSION["user_id"])) {
     header("location: index.php?p=signin");
     exit();
-
 } else {
     if (($_GET["user_id"] && $_SESSION["role"] == "admin") || ($_GET["user_id"] == $_SESSION["user_id"])) {
         require_once ('./class/class.User.php');
@@ -82,7 +81,7 @@ if (!isset($_SESSION["user_id"])) {
         </div>
         <div class="flex flex-row justify-center items-center">
             <input type="submit" value="Update" name="submit">
-            <a href="./index.php?signin.php">Cancel</a>
+            <a href="./index.php?p=listUser.php">Cancel</a>
         </div>
     </form>
 </main>
